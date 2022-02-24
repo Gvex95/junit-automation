@@ -1,8 +1,7 @@
 pipeline {
 
-    agent any
+    agent { label 'mrcc-linux' }
     stages {
-
         stage('Checkout Codebase'){
             steps{
                 //cleanWs() -> Not available on current version
