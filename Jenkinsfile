@@ -1,6 +1,5 @@
 pipeline {
 
-    agent { label 'mrcc-linux' }
     stages {
         stage('Checkout Codebase'){
             steps{
