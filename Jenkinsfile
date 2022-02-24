@@ -2,6 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Checkout Codebase'){
+            agent { label 'mrcc-linux-test' }
             steps{
                 //cleanWs() -> Not available on current version
                 checkout scm: [$class: 'GitSCM', branches: [[name: '*/main']],userRemoteConfigs:
@@ -10,6 +11,7 @@ pipeline {
         }
 
         stage('Build'){
+            agent { label 'mrcc-linux-test' }
             steps{
                 sh 'mkdir lib'
                 sh 'cd lib/ ; wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar'
@@ -18,6 +20,7 @@ pipeline {
         }
 
         stage('Test'){
+            agent { label 'mrcc-linux-test' }
             steps{
                 sh 'cd src/ ; java -jar ../lib/junit-platform-console-standalone-1.8.2.jar -cp "." --select-class CarTest --reports-dir="reports"'
                 junit 'src/reports/*-jupiter.xml'
@@ -25,6 +28,7 @@ pipeline {
         }
 
         stage('Deploy'){
+            agent { label 'mrcc-linux-test' }
             steps{
                 sh 'cd src/ ; java App' 
             }
