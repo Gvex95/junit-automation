@@ -12,7 +12,7 @@ pipeline {
         stage('Build'){
             steps{
                 // Export javac
-                sh 'export PATH="/home/commtester/bin:$PATH"'
+                sh 'export PATH="/home/commtester/bin/:$PATH"'
                 sh 'mkdir lib'
                 sh 'cd lib/ ; wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar; cd ..'
                 sh 'cd src/ ; javac -cp ../lib/junit-platform-console-standalone-1.8.2.jar *.java; cd ..'
