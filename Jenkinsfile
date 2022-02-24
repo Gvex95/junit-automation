@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout Codebase'){
             steps{
-                cleanWs()
+                //cleanWs() -> Not available on current version
                 checkout scm: [$class: 'GitSCM', branches: [[name: '*/main']],userRemoteConfigs:
                 [[credentialsId: 'github-ssh-key', url: 'git@github.com:Gvex95/junit-automation.git']]]
             }
