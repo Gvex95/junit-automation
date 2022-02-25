@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'mrcc-linux-test' }
+    environment {
+        PATH = "/home/commtester/bin:$PATH"
+    }
     stages {
         stage('Checkout Codebase'){
             steps{
@@ -11,8 +14,6 @@ pipeline {
 
         stage('Build'){
             steps{
-                // Export javac
-                sh 'export PATH=/home/commtester/bin/:$PATH'
                 sh 'echo $PATH'
                 sh 'mkdir lib'
                 sh 'cd lib/ ; wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar; cd ..'
