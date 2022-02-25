@@ -23,7 +23,7 @@ pipeline {
 
         stage('Test'){
             steps{
-                sh 'cd src/ ; java -jar ../lib/junit-platform-console-standalone-1.8.2.jar -cp . --select-class CarTest --reports-dir="reports"'
+                sh 'cd src/ ; java -jar ../lib/junit-platform-console-standalone-1.8.2.jar -cp . --select-class CarTest --reports-dir="reports"; cd ..'
                 junit 'src/reports/*-jupiter.xml'
             }
         }
